@@ -1,0 +1,19 @@
+## plot1.R
+## Open up a .png file
+png("plot1.png", width=480, height=480) 
+
+## Read in the data and then find the dates we're looking for.
+big_data <- read.table("household_power_consumption.txt", sep=";" , header=T)
+select_data <- big_data[big_data$Date %in% c("1/2/2007","2/2/2007") ,] 
+
+## Tidy up any of the data elements we need to chart. 
+num_Global_active_power <- as.numeric(select_data$Global_active_power)
+
+## Build the plot
+hist(num_Global_active_power,
+main="Global Active Power", 
+xlab="Global Active Power(kilowatts)", 
+col="red")
+
+## Close the .png file
+dev.off()
